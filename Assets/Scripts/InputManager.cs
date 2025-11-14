@@ -10,4 +10,9 @@ public class InputManager : MonoBehaviour
     {
         OnMoveInput?.Invoke(inputValue.Get<Vector2>());
     }
+
+    private void OnCancel(InputValue inputValue)
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+    }
 }
