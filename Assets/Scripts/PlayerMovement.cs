@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = worldPos;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         collision.gameObject.GetComponent<EnemyMovement>().EnemyHit();
     }
