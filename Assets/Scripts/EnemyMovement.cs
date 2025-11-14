@@ -9,6 +9,18 @@ public class EnemyMovement : MonoBehaviour
     {
         enemySpeed = Random.Range(0.1f, 2.0f);
         player = FindAnyObjectByType<PlayerMovement>().GetComponent<Transform>();
+
+        SetRandomPosition();
+    }
+
+    void SetRandomPosition()
+    {
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        screenPos.x = Random.Range(0f, Screen.width);
+        screenPos.y = Random.Range(0f, Screen.height);
+
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
+        transform.position = worldPos;
     }
 
     private void Update()
