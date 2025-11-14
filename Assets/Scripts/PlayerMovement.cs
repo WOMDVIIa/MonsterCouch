@@ -24,5 +24,12 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         transform.Translate(lastReadMoveInput * moveSpeed * Time.deltaTime);
+
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        screenPos.x = Mathf.Clamp(screenPos.x, 0f, Screen.width);
+        screenPos.y = Mathf.Clamp(screenPos.y, 0f, Screen.height);
+
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
+        transform.position = worldPos;
     }
 }
