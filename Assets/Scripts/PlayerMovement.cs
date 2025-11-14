@@ -32,4 +32,9 @@ public class PlayerMovement : MonoBehaviour
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
         transform.position = worldPos;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        collision.gameObject.GetComponent<EnemyMovement>().EnemyHit();
+    }
 }

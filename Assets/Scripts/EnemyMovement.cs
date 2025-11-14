@@ -5,6 +5,8 @@ public class EnemyMovement : MonoBehaviour
     float enemySpeed;
     Transform player;
 
+    bool activated = true;
+
     private void Start()
     {
         enemySpeed = Random.Range(0.1f, 2.0f);
@@ -25,6 +27,9 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!activated)
+            return;
+
         Vector2 runAwayPath = (transform.position - player.position).normalized;
         transform.Translate(runAwayPath * enemySpeed * Time.deltaTime);
 
@@ -34,5 +39,11 @@ public class EnemyMovement : MonoBehaviour
 
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
         transform.position = worldPos;
+    }
+
+    public void EnemyHit()
+    {
+        activated = false;
+        GetComponent<SpriteRenderer>().color = Color.red;
     }
 }
