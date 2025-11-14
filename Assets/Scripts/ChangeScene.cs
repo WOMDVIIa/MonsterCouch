@@ -6,4 +6,13 @@ public class ChangeScene : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
     }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }
